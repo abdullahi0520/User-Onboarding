@@ -23,7 +23,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.form-input {
+  padding: 0 24px 0 24px;
+  display: flex;
+  flex-direction: column;
+}
 .App-link {
   color: #61dafb;
 }
