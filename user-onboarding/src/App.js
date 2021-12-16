@@ -1,24 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-import UserForm from './Form';
-import React, {useEffect, useState} from 'react';
+import Form from './Form';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-import formSchema from './formSchema';
 import User from './User';
+import schema from './formSchema';
 
 
 const initialFormValues = {
-  username: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   TermsOfService: false
 }
 
 const initialFormErrors = {
-  username: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
+  
 
 }
 
@@ -33,26 +36,30 @@ const [formErrors, setFormErrors] = useState(initialFormErrors);
 const [disabled, setDisabled]= useState(initialDisabled);
 
 const getUsers = () => {
-  axios.get('https://reqres.in/api/users')
+  axios.get('https://reqres.in/api/users/')
   .then(res => {
-    console.log(res)
-    setUsers(res.data)
-  }).catch(err => console.error(err))
+    console.log(res.data.data);
+    setUsers(res.data.data)
+  })
+  .catch(err => {
+    console.error(err)
+  })
 
 }
 
 const postUsers = newUser => {
-  axios.post('https://reqres.in/api/users', newUser)
+  axios.post('https://reqres.in/api/users/', newUser)
   .then(res => {
-    console.log(res.data);
-    setUsers([ res.data, ...users])
+    console.log('postUser', newUser)
+    setUsers([ res.data.data, ...users])
   })
-  .catch(err => console.err(err))
-  .finally(()=> setFormValues(initialFormValues))
+  .catch(err => {console.error(err)
+  })
+  .finally(() => setFormValues(initialFormValues))
 }
 
 const validate = (name,value) => {
-  yup.reach(formSchema, name)
+  yup.reach(schema, name)
   .validate(value)
   .then(() => setFormErrors({...formErrors, [name]: ''}))
   .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
@@ -61,25 +68,30 @@ const validate = (name,value) => {
 
 const inputChange = (name, value) => {
   validate (name,value);
-  setFormValues({ ...formValues, [name]: value})
+  setFormValues({
+     ...formValues, 
+     [name]: value
+    })
 }
 
 const formSubmit = () => {
   const newUser = {
-    username: formValues.username.trim(),
+    first_name: formValues.first_name.trim(),
+    last_name: formValues.last_name.trim(),
     email: formValues.email.trim(),
     password: formValues.password.trim(),
-    TermsOfService: !!formValues.TermsOfService,
-    
+    TermsOfService: formValues.TermsOfService,
+  
   }
   postUsers(newUser)
+  console.log('newUSer', newUser)
 }
-// useEffect(()=> {
-//   getUsers()
-// },[])
+useEffect(()=> {
+  getUsers();
+},[])
 
 useEffect(()=> {
-  formSchema.isValid(formValues)
+  schema.isValid(formValues)
   .then(valid => setDisabled(!valid))
 }, [formValues])
 
@@ -89,7 +101,7 @@ useEffect(()=> {
         <h1>User Onboarding</h1>
         
         <div>
-      <UserForm
+      <Form
         values= {formValues}
         change={inputChange}
         submit={formSubmit}
@@ -101,7 +113,7 @@ useEffect(()=> {
           return (
             <User 
             key = {user.id}
-            details={user}
+            details ={user}
             />
           )
         })}

@@ -8,8 +8,8 @@ export default function User ({ details }) {
 
     return (
         <div>
-            <h2>{details.username}</h2>
-            <p>Email at: {details.email}</p>
+            <h2>{details.first_name} {details.last_name}</h2>
+            <p>Email: {details.email}</p>
         </div>
     )
 }
