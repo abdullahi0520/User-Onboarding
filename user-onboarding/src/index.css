@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
-
+.form-input {
+  padding: 0 24px 0 24px;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+}
   
 

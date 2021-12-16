@@ -10,6 +10,7 @@ export default function User ({ details }) {
         <div>
             <h2>{details.first_name} {details.last_name}</h2>
             <p>Email: {details.email}</p>
+            <p>Role:{details.role} </p>
         </div>
     )
 }

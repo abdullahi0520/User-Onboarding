@@ -32,6 +32,7 @@ return (
     </div>
 
     <div className='form-group inputs'>
+      <div>
     <label>First Name
         <input 
             name='first_name'
@@ -40,6 +41,8 @@ return (
             onChange= {onChange}
         />
     </label>
+    </div>
+    <div>
     <label>Last Name
         <input 
             name='last_name'
@@ -47,9 +50,9 @@ return (
             value= {values.last_name} 
             onChange= {onChange}
         />
-    
-        
     </label>
+    </div>
+    <div>
     <label>Email
         <input 
             name='email'
@@ -58,6 +61,8 @@ return (
             onChange= {onChange}
         />  
     </label>
+    </div>
+    <div>
     <label>Password
         <input 
             name='password'
@@ -66,6 +71,7 @@ return (
             onChange= {onChange}
         /> 
     </label>
+    <div>
     <label>Terms of Service
         <input 
             name='TermsOfService'
@@ -74,6 +80,8 @@ return (
             onChange= {onChange}
         />   
     </label>
+    </div>
+    </div>
    </div>
 </form>
 )

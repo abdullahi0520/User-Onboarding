@@ -51,7 +51,7 @@ const postUsers = newUser => {
   axios.post('https://reqres.in/api/users/', newUser)
   .then(res => {
     console.log('postUser', newUser)
-    setUsers([ res.data.data, ...users])
+    setUsers([ res.data, ...users])
   })
   .catch(err => {console.error(err)
   })
