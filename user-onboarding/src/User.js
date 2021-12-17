@@ -7,10 +7,16 @@ export default function User ({ details }) {
     }
 
     return (
-        <div>
-            <h2>{details.first_name} {details.last_name}</h2>
-            <p>Email: {details.email}</p>
-            <p>Role:{details.role} </p>
+        <div className='posted-user'>
+            {/* <h2>{details.first_name}</h2>
+            <h3>{details.last_name}</h3>
+            <p>{details.email}</p> */}
+            
+                {JSON.stringify(details.first_name,null, 2)}
+                {JSON.stringify(details.last_name,null, 2)}
+                {JSON.stringify(details.email,null, 2)}
+            
+
         </div>
     )
 }

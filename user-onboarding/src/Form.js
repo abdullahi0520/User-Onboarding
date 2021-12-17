@@ -20,10 +20,10 @@ export default function Form(props) {
 return (
 <form onSubmit= {onSubmit} className='form-input'>
         <div className='button'>
-            <button disabled={disabled}>Sign up!</button>
+            <button id='sumbitBtn' disabled={disabled}>Sign up!</button>
         </div>
 
-    <div className='errors'>
+    <div className='errorsDiv'>
     <div>{errors.first_name}</div>
     <div>{errors.last_name}</div>
     <div>{errors.email}</div>
